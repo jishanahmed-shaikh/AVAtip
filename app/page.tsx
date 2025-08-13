@@ -8,41 +8,47 @@ import LazySection from './components/ui/LazySection';
 import CustomCursor from './components/ui/CustomCursor';
 import ScrollProgress from './components/ui/ScrollProgress';
 import PageTransition from './components/anime/PageTransition';
-import LoadingSequence from './components/anime/LoadingSequence';
+import CyberLoading from './components/ui/CyberLoading';
+import CyberNavbar from './components/ui/CyberNavbar';
+import ScrollToTop from './components/ui/ScrollToTop';
+import CyberBackground from './components/ui/CyberBackground';
+import { NotificationSystem, useNotifications } from './components/ui/NotificationSystem';
 import { mockSteps, mockFeatures, mockLeaderboardEntries, mockRoadmapPhases } from './data/mockData';
 
 // Lazy load non-critical sections
 const HowItWorksSection = dynamic(() => import('./components/sections/HowItWorksSection'), {
-  loading: () => <LazySection fallback={<div className="h-96 loading-skeleton" />} />
+  loading: () => <div className="h-96 bg-dark-gray/30 animate-pulse" />
 });
 
 const FeaturesSection = dynamic(() => import('./components/sections/FeaturesSection'), {
-  loading: () => <LazySection fallback={<div className="h-96 loading-skeleton" />} />
+  loading: () => <div className="h-96 bg-dark-gray/30 animate-pulse" />
 });
 
 const LeaderboardSection = dynamic(() => import('./components/sections/LeaderboardSection'), {
-  loading: () => <LazySection fallback={<div className="h-96 loading-skeleton" />} />
+  loading: () => <div className="h-96 bg-dark-gray/30 animate-pulse" />
 });
 
 const RoadmapSection = dynamic(() => import('./components/sections/RoadmapSection'), {
-  loading: () => <LazySection fallback={<div className="h-96 loading-skeleton" />} />
+  loading: () => <div className="h-96 bg-dark-gray/30 animate-pulse" />
 });
 
 const CTASection = dynamic(() => import('./components/sections/CTASection'), {
-  loading: () => <LazySection fallback={<div className="h-96 loading-skeleton" />} />
+  loading: () => <div className="h-96 bg-dark-gray/30 animate-pulse" />
 });
 
 const Footer = dynamic(() => import('./components/sections/Footer'), {
-  loading: () => <LazySection fallback={<div className="h-64 loading-skeleton" />} />
+  loading: () => <div className="h-64 bg-dark-gray/30 animate-pulse" />
 });
 
 export default function Home() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const { notifications, removeNotification, showSuccess, showInfo, showError } = useNotifications();
 
   // Simulate initial loading
   const handleLoadingComplete = () => {
     setIsLoading(false);
+    showSuccess('System Online', 'Neural network synchronized. Welcome to AVAtip!');
   };
 
   const handleCTAClick = (action: 'get-started' | 'view-demo') => {
@@ -63,16 +69,32 @@ export default function Home() {
 
   const handleConnectWallet = () => {
     // Simulate wallet connection
-    console.log('Connecting wallet...');
-    // In a real app, this would integrate with MetaMask, Core, etc.
-    setIsWalletConnected(true);
+    showInfo('Connecting...', 'Establishing secure connection to Avalanche network...');
+    
+    // Simulate connection delay
+    setTimeout(() => {
+      setIsWalletConnected(true);
+      showSuccess('Wallet Connected', 'Successfully connected to Core wallet on Avalanche C-Chain!');
+    }, 2000);
   };
 
   return (
     <ErrorBoundary>
-      <LoadingSequence isLoading={isLoading} onComplete={handleLoadingComplete} />
+      <CyberLoading isLoading={isLoading} onComplete={handleLoadingComplete} />
+      <CyberBackground />
+      <CyberNavbar 
+        onConnectWallet={handleConnectWallet} 
+        isWalletConnected={isWalletConnected} 
+      />
       <CustomCursor />
       <ScrollProgress />
+      <ScrollToTop />
+      
+      {/* Notification System */}
+      <NotificationSystem 
+        notifications={notifications} 
+        onRemove={removeNotification} 
+      />
       
       <PageTransition isLoading={isLoading}>
         <main className="min-h-screen bg-deep-black text-cyber-white overflow-x-hidden">
@@ -90,21 +112,21 @@ export default function Home() {
 
         {/* How It Works Section */}
         <div id="how-it-works">
-          <Suspense fallback={<LazySection />}>
+          <Suspense fallback={<div className="h-96 bg-dark-gray/30 animate-pulse" />}>
             <HowItWorksSection steps={mockSteps} />
           </Suspense>
         </div>
 
         {/* Features Section */}
         <div id="features">
-          <Suspense fallback={<LazySection />}>
+          <Suspense fallback={<div className="h-96 bg-dark-gray/30 animate-pulse" />}>
             <FeaturesSection features={mockFeatures} />
           </Suspense>
         </div>
 
         {/* Leaderboard Section */}
         <div id="leaderboard">
-          <Suspense fallback={<LazySection />}>
+          <Suspense fallback={<div className="h-96 bg-dark-gray/30 animate-pulse" />}>
             <LeaderboardSection 
               entries={mockLeaderboardEntries}
               isLive={true}
@@ -116,7 +138,7 @@ export default function Home() {
 
         {/* Roadmap Section */}
         <div id="roadmap">
-          <Suspense fallback={<LazySection />}>
+          <Suspense fallback={<div className="h-96 bg-dark-gray/30 animate-pulse" />}>
             <RoadmapSection 
               phases={mockRoadmapPhases}
               title="Roadmap"
@@ -127,13 +149,13 @@ export default function Home() {
 
         {/* Call to Action Section */}
         <div id="cta">
-          <Suspense fallback={<LazySection />}>
+          <Suspense fallback={<div className="h-96 bg-dark-gray/30 animate-pulse" />}>
             <CTASection onConnectWallet={handleConnectWallet} />
           </Suspense>
         </div>
 
         {/* Footer */}
-        <Suspense fallback={<LazySection />}>
+        <Suspense fallback={<div className="h-64 bg-dark-gray/30 animate-pulse" />}>
           <Footer />
         </Suspense>
         </main>

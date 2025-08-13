@@ -25,15 +25,15 @@ const MorphingText: React.FC<MorphingTextProps> = ({
   }, [texts.length, interval]);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative min-h-[2rem] flex items-center justify-center ${className}`}>
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
           initial={{ 
-            y: 50, 
+            y: 20, 
             opacity: 0,
-            filter: "blur(10px)",
-            scale: 0.8
+            filter: "blur(5px)",
+            scale: 0.95
           }}
           animate={{ 
             y: 0, 
@@ -42,16 +42,16 @@ const MorphingText: React.FC<MorphingTextProps> = ({
             scale: 1
           }}
           exit={{ 
-            y: -50, 
+            y: -20, 
             opacity: 0,
-            filter: "blur(10px)",
-            scale: 1.2
+            filter: "blur(5px)",
+            scale: 1.05
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.5,
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center font-display"
         >
           {texts[currentIndex]}
         </motion.span>

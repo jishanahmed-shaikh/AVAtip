@@ -10,7 +10,8 @@ import ParticleField from '../anime/ParticleField';
 import MorphingText from '../anime/MorphingText';
 import GlitchText from '../anime/GlitchText';
 import FloatingOrbs from '../anime/FloatingOrbs';
-import MagneticButton from '../anime/MagneticButton';
+import CyberButton from '../ui/CyberButton';
+import AdvancedParticleField from '../ui/AdvancedParticleField';
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onCTAClick }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,8 +35,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onCTAClick }) => {
       {/* Floating Orbs */}
       <FloatingOrbs count={12} />
 
-      {/* Particle Field */}
-      <ParticleField particleCount={30} color="#E84142" />
+      {/* Advanced Particle Field */}
+      <AdvancedParticleField 
+        particleCount={80}
+        colors={['#E84142', '#4ECDC4', '#9B59B6', '#3498DB']}
+        speed={0.3}
+        size={3}
+        interactive={true}
+        connectionDistance={120}
+        className="opacity-60"
+      />
 
       {/* Animated Grid Background */}
       <div className="absolute inset-0 opacity-5">
@@ -147,20 +156,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onCTAClick }) => {
             delay: 0.2,
             ease: [0.25, 0.46, 0.45, 0.94] // Anime-style easing
           }}
-          className="mb-16"
+          className="mb-8 mt-24"
         >
-          <h1 className="text-6xl md:text-8xl font-thin text-cyber-white tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-heading text-cyber-white tracking-tight">
             <GlitchText 
               text="AVA" 
-              className="inline-block text-avalanche-red"
+              className="inline-block text-avalanche-red font-cyber"
               intensity="medium"
               trigger="auto"
             />
-            <span className="text-cyber-white font-light">tip</span>
+            <span className="text-cyber-white font-heading font-light">tip</span>
           </h1>
           
           {/* Morphing Tagline */}
-          <div className="mt-4 h-8">
+          <div className="mt-4 h-12">
             <MorphingText
               texts={[
                 "Decentralized Social Rewards",
@@ -168,14 +177,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onCTAClick }) => {
                 "Avalanche-Powered Platform",
                 "Web3 Creator Economy"
               ]}
-              className="text-lg text-gray-400 font-light"
+              className="text-lg text-gray-400 font-display font-light"
               interval={2500}
             />
           </div>
         </motion.div>
 
         {/* Tri-Layer Animated Headline */}
-        <div className="mb-12">
+        <div className="">
           <TriLayerText 
             lines={[
               "Transform social engagement",
@@ -201,48 +210,47 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onCTAClick }) => {
           transition={{ duration: 0.8, delay: 3 }}
           className="mb-16"
         >
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-display">
             Decentralized micropayments for every like, share, and comment. 
             Built on Avalanche for instant, low-cost transactions.
           </p>
         </motion.div>
 
-        {/* CTA Buttons with Magnetic Effects */}
+        {/* CTA Buttons with Enhanced Effects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 3.5 }}
           className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20"
         >
-          <MagneticButton
+          <CyberButton
             onClick={() => onCTAClick('get-started')}
-            className="group relative bg-avalanche-red text-cyber-white px-8 py-4 text-sm font-medium uppercase tracking-wider transition-all duration-300 overflow-hidden"
-            strength={0.4}
+            variant="primary"
+            size="lg"
+            className="group relative uppercase tracking-wider font-display font-medium"
+            glitch={true}
           >
-            {/* Animated Background */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-red-600 to-avalanche-red"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "0%" }}
-              transition={{ duration: 0.3 }}
-            />
-            
-            {/* Corner Accents */}
-            <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-cyber-white" />
-            <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-cyber-white" />
-            <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-cyber-white" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-cyber-white" />
-            
-            <span className="relative z-10">Get Started</span>
-          </MagneticButton>
+            <span className="flex items-center gap-2">
+              Get Started
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+          </CyberButton>
           
-          <MagneticButton
+          <CyberButton
             onClick={() => onCTAClick('view-demo')}
-            className="group relative bg-transparent text-cyber-white border border-gray-600 px-8 py-4 text-sm font-medium uppercase tracking-wider transition-all duration-300"
-            strength={0.3}
+            variant="ghost"
+            size="lg"
+            className="group relative uppercase tracking-wider font-display font-medium"
           >
-            <span className="relative z-10">View Demo</span>
-          </MagneticButton>
+            <span className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Watch Demo
+            </span>
+          </CyberButton>
         </motion.div>
 
         {/* Stats with Depth Animation */}

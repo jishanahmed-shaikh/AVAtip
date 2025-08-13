@@ -1,0 +1,50 @@
+{
+  "name": "avatip",
+  "version": "0.1.0",
+  "description": "Turn social interactions into instant micropayments on Avalanche",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "hardhat:compile": "hardhat compile",
+    "hardhat:test": "hardhat test",
+    "hardhat:deploy": "hardhat run scripts/deploy.js"
+  },
+  "keywords": [
+    "avalanche",
+    "defi",
+    "social",
+    "micropayments",
+    "crypto",
+    "dapp",
+    "blockchain",
+    "web3"
+  ],
+  "author": "AVAtip Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/avatip.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/avatip/issues"
+  },
+  "homepage": "https://github.com/yourusername/avatip#readme",
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -81,8 +81,8 @@ Social Platform APIs ← Webhook System ← Smart Contracts
 ### Quick Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/avatip.git
-cd avatip
+git clone https://github.com/jishanahmed-shaikh/AVAtip.git
+cd AVAtip
 
 # Install dependencies
 npm install

@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔺 AVAtip
+# 🔺 AVAtip 🔺
 
 <img src="./Assets/logo.png" alt="AVAtip Logo" width="200" height="200" />
 </div>

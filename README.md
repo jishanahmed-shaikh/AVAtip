@@ -1,4 +1,9 @@
+<div align="center">
+
 # 🔺 AVAtip
+
+<img src="./Assets/logo.png" alt="AVAtip Logo" width="200" height="200" />
+</div>
 
 <div align="center">
   <img src="https://img.shields.io/badge/Avalanche-E84142?style=for-the-badge&logo=avalanche&logoColor=white" alt="Avalanche" />
